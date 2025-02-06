@@ -1,0 +1,43 @@
+[project]
+name = "finwrap"
+version = "0.1.0"
+description = "A Ledger library for unified account and transactions handling with currency conversion support"
+readme = "README.md"
+authors = [{ name = "Luciano Scarpulla", email = "scarpulla53@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = [
+    "fastexcel>=0.12.1",
+    "polars>=1.21.0",
+    "pyaml>=25.1.0",
+    "pydantic>=2.10.6",
+    "requests>=2.32.3",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial :: Accounting",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Financial and Insurance Industry",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+packages = ["src/finwrap"]
+
+[dependency-groups]
+dev = ["mypy>=1.14.1", "pip>=25.0", "pytest>=8.3.4"]
+
+[project.optional-dependencies]
+bagels = [
+    "sqlalchemy>=2.0.37",
+    "pandas>=2.2.3",
+    "pyarrow>=19.0.0",
+    "typer>=0.15.1",
+]
+
+[project.scripts]
+bagels-export = "finwrap.export.bagels:cli"
